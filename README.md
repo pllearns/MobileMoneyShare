@@ -69,22 +69,6 @@ DATABASE:
 CRUD:
 1. USER WILL BE ABLE TO CREATE, READ, UPDATE, DELETE - user info and income sharing information, network information.
 
-## Specifications
-
-- [ ] Mobile responsive 
-- [ ] Test Driven Development - TDD
-- [ ] Manipulate Bootstrap to achieve modern looking UI 
-- [ ] Needs to be able to use dynamic data
-- [ ] Money sharing calculator
-- [ ] Must be able to do user authentication – Log In/Log Out/Sign Up
-- [ ] User must be able to update profile  
-- [ ] Network info must be able to update based on user info (specifically should be able to show how many users are in the network)
-- [ ] Must use an algorithm to figure out how much each persyn in the network must share 
-
-
-
- 
-
 ## Required
 
 Do not remove these specs - they are required for all goals.
