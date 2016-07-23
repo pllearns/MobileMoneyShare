@@ -4,7 +4,6 @@
 ## Specifications
 
 - [ ] Mobile responsive 
-- [ ] Test Driven Development - TDD
 - [ ] Manipulate Bootstrap to achieve modern looking UI 
 - [ ] Needs to be able to use dynamic data
 - [ ] Money sharing calculator
