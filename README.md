@@ -31,8 +31,41 @@
 ## Example Fund
 
 members: Susan, Larry, Tyra, Sam
+funding cycle start date:  (1 week from now)
 payment cycle length: 1 week
 payment cycle amount: $200
+
+so there are 4 payment cycles and the funding cycle is 1 month.
+
+week 1
+Susan does nothing
+Larry saves $200
+Tyra saves $200
+Sam saves $200
+
+week 2
+Susan is paid $600 from each member directly via venmo
+Larry pays $200 to Susan
+Tyra pays $200 to Susan
+Sam pays $200 to Susan
+
+week 3
+Susan pays $200 to Larry
+Larry is paid $600 from each member directly via venmo
+Tyra pays $200 to Larry
+Sam pays $200 to Larry
+
+week 4
+Susan pays $200
+Larry pays $200
+Tyra is paid $600
+Sam pays $200
+
+week 4
+Susan pays $200
+Larry pays $200
+Tyra pays $200
+Sam is paid $600
 
 ## Specifications
 
