@@ -1,6 +1,6 @@
 # MobileMoneyShare
 
-![](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiEtffGnY_OAhUQyWMKHdCaAp8QjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Froxrea%2Fk-is-for-koala%2F&psig=AFQjCNGqTlVfx4HynT1CgK8lpRHNVGkm-w&ust=1469557248002386)
+![](https://s-media-cache-ak0.pinimg.com/736x/15/8c/a2/158ca2f7e9e1c0e47aef09fe1c8f4039.jpg)
 
 ## User Stories:
  - Tom is a well compensated person who wants to share his income with community members, so his friends can join his fund through the app
