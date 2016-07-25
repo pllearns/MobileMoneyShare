@@ -31,6 +31,7 @@
 
 ## Example Fund
 
+```
 members: Susan, Larry, Tyra, Sam
 funding cycle start date:  (1 week from now)
 payment cycle length: 1 week
@@ -67,6 +68,7 @@ Susan pays $200
 Larry pays $200
 Tyra pays $200
 Sam is paid $600
+```
 
 ## Specifications
 
