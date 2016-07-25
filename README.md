@@ -31,7 +31,6 @@
 
 ## Example Fund
 
-```
 members: Susan, Larry, Tyra, Sam
 funding cycle start date:  (1 week from now)
 payment cycle length: 1 week
@@ -68,7 +67,6 @@ Susan pays $200
 Larry pays $200
 Tyra pays $200
 Sam is paid $600
-```
 
 ## Specifications
 
@@ -86,32 +84,6 @@ Sam is paid $600
 ## Description
 
 An app that allows communities to share monetary resources based on how much income they have and need. This idea is based off a SuSu or Tanda method of loan circles popular in some Black and Brown communities (here and abroad).
-
-## User Story
-
-JOJO wants to join **** and goes to the homepage and then clicks to a new user form. 
-
-New user JOJO clicks to the form to fill out an application. The form/application includes: 
-- A modal that includes relevant information to the group
-- User information is stored in a MongoDB Database
-- User is authenticated and allowed to log in
-
-JOJO sees a network he wants to join. He asks for permission to join.
-- Relationship between users that the database determines
-- User is authenticated and allowed to join the network
-
-On the network page, there is a link to an income sharing calculator. The link to the income sharing calculator brings you to a page where you enter the following financial information into a form:
-- Your income earned last month 
-- Expenses from last month
-- Preferred shared rate
-
-This information goes through an algorithm that puts out a number that JOJO can then agree to donate into the group's pot. They have to electronically agree to this number. JOJO is then able to see the percentage other network participants will be donating into the pot.
-- Algorithm is triggered after the last person enters the network (5 people)
-- Algorithm spits out a percentage rate for each person to donate out of their monthly income.
-
-The next month, JOJO's financial situation has changed. He has to update his information. He has also changed his email address and moved to a new residential address:
-- User can delete, edit, and update his financial information
-- User can delete, edit and update his user information
 
 ## Context 
 YOU WILL LEARN SO MUCH DOING THIS PROJECT!
