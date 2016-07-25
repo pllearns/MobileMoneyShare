@@ -1,5 +1,38 @@
 # MobileMoneyShare
 
+## User Stories:
+ - Tom is a well compensated person who wants to share his income with community members, so his friends can join his fund through the app
+ - Tom wants a way to verify the needs of the people who take money out of the fund
+ - The circle of people engaged in the fund need to put money into the fund and are able to check when they are able to take a payout from the fund, so that no one 
+ 
+ 
+ - Sally and her friends want to save money together in a shared fund
+ - Sally signs up to the site and starts a 'fund' and invites her friends to join the fund
+ - 3 of her friends join the fund and put in a specific percentage of income
+ - They each use the income calculator to determine their monthly contribution amount 
+ - Each month $1000 is collectively put into the fund and is sent to Sally
+ - Sally becomes the treasurer of the fund and is responsible for auditing the payments on the ledger
+ 
+## Features:
+ - you can't add or remove someone once a fund has started its cycle
+ - Members can join a fund which is the money pot
+ - Funds have 1 funding cycle, a funding cycle has n payment cycles based on the amount of people in the circle
+ - When you create the fund you specify:
+    - The cycle amount which is how much you put in
+    - Specify the length of the payment cycle (i.e. one month, one week, etc.) 
+    - 
+## Terms:
+  - Fund is a group of people who pool their money together based on specified criteria at the inception of the fund
+  - Funding cycle is the entire process of paying and being paid back for the entire group of peole
+  - Payment cycle is an nth (n is the amount of people in the fund) of the funding cycle, each payment cycle members either pay into the fund 
+  - 
+  
+
+## Example Fund
+
+members: Susan, Larry, Tyra, Sam
+payment cycle length: 1 week
+payment cycle amount: $200
 
 ## Specifications
 
