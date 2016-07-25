@@ -11,6 +11,14 @@ app.get('/', function(req, res){
   res.render('index', {});
 })
 
+app.get('/about', function(req, res){
+  res.render('about', {});
+})
+
+app.post('/fakebullshit', function(req, res){
+  res.send('whatever');
+})
+
 app.get('/funds/:fundSlug', function(req, res){
   var fundSlug = req.params.fundSlug
 
