@@ -1,0 +1,27 @@
+//- TODO figure out how to import mixins
+mixin form-errors(errors, property)
+  ol.errors
+    each error in errors
+      if error && error.property === property
+        li #{error.msg}
+
+include layout
+  h1 Sign Up
+  form(method="post", action="/signin")
+
+    if loginFailed
+      h2 Bad username or password
+
+    fieldset.form-group
+      label(for="user-email") Email Address
+      input.form-control(type="text", name="email" id="user-email" value=email)
+      small.text-muted We'll never share your email with anyone else.
+
+    fieldset.form-group
+      label(for="user-password") Password
+      input.form-control(type="password", name="password" id="user-password")
+
+
+    button.btn.btn-primary(type="submit") Signin
+
+
