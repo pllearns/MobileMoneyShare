@@ -7,4 +7,10 @@ html
     script(src="/client.js")
 
   body
+    nav
+      if user
+        a(href="/signout") signout
+      else
+        a(href="/signin") signin
+        a(href="/signup") signup
     yield

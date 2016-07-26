@@ -1,0 +1,39 @@
+//- TODO figure out how to import mixins
+mixin form-errors(errors, property)
+  ol.errors
+    each error in errors
+      if error && error.property === property
+        li #{error.msg}
+
+include layout
+  h1 Sign Up
+  form(method="post", action="/signup")
+
+    ol
+      each error in errors
+        li= JSON.stringify(error)
+
+    fieldset.form-group
+      label(for="user-name") Name
+      input.form-control(type="text", name="user[name]" id="user-name" value=user.name)
+      +form-errors(errors, "name")
+
+    fieldset.form-group
+      label(for="user-email") Email Address
+      input.form-control(type="text", name="user[email]" id="user-email" value=user.email)
+      small.text-muted We'll never share your email with anyone else.
+      +form-errors(errors, "email")
+
+    fieldset.form-group
+      label(for="user-password") Password
+      input.form-control(type="password", name="user[password]" id="user-password")
+      +form-errors(errors, "password")
+
+    fieldset.form-group
+      label(for="user-passwordConfirmation") Password Confirmation
+      input.form-control(type="password", name="user[passwordConfirmation]" id="user-passwordConfirmation")
+      +form-errors(errors, "passwordConfirmation")
+
+    button.btn.btn-primary(type="submit") Signup
+
+

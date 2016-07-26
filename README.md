@@ -77,7 +77,7 @@ Sam is paid $600
 - [ ] Needs to be able to use dynamic data
 - [ ] Money sharing calculator
 - [ ] Must be able to do user authentication – Log In/Log Out/Sign Up
-- [ ] User must be able to update profile  
+- [ ] User must be able to update profile
 - [ ] Network info must be able to update based on user info (specifically should be able to show how many users are in the network)
 - [ ] Must use an algorithm to figure out how much each persyn in the network must share
 
@@ -117,3 +117,15 @@ CRUD:
 Do not remove these specs - they are required for all goals.
 
 - [ ] The artifact produced is properly licensed, preferably with the MIT license.
+
+
+
+## Development
+
+
+### Setup
+
+Create the database:
+
+`createdb fundkoala`
+
