@@ -1,0 +1,42 @@
+body {
+  background: linear-gradient(45deg, rgba(94,122,138,1) 0%, rgba(52,90,110,1) 39%, rgba(65,100,120,1) 63%, rgba(82,139,179,1) 100%);
+}
+
+#login {
+  color: blue;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  margin: auto;
+
+}
+
+#login:hover {
+  background-color: grey;
+  color: orange;
+}
+
+#create_fund {
+  text-align: center;
+  color: teal;
+  padding: 15px;
+  display: block;
+  margin: auto;
+}
+
+#create_fund:hover {
+  background-color: grey;
+  color: orange;
+}
+
+.AppName {
+  text-align: center;
+}
+
+.Header2 {
+  text-align: center;
+}
+
+.AboutKoala {
+  text-align: center;
+}
