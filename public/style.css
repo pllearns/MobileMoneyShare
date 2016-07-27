@@ -1,42 +1,87 @@
 body {
-  background: linear-gradient(45deg, rgba(94,122,138,1) 0%, rgba(52,90,110,1) 39%, rgba(65,100,120,1) 63%, rgba(82,139,179,1) 100%);
+  background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.4)), url("https://camo.githubusercontent.com/4cff3b622671bc20d9186b69a69a2ec3d0e975e1/68747470733a2f2f732d6d656469612d63616368652d616b302e70696e696d672e636f6d2f373336782f31352f38632f61322f31353863613266376539653163306534376165663039666531633866343033392e6a7067");
+  background-size: cover;
 }
 
-#login {
-  color: blue;
-  text-align: center;
-  display: block;
-  padding: 10px;
-  margin: auto;
-
+body.clearfix {
+  overflow: auto;
 }
 
-#login:hover {
-  background-color: grey;
-  color: orange;
+small.text-muted {
+  color: #dba65e;
+  font-size: 14px;
 }
-
-#create_fund {
-  text-align: center;
-  color: teal;
-  padding: 15px;
-  display: block;
-  margin: auto;
-}
-
-#create_fund:hover {
-  background-color: grey;
-  color: orange;
-}
-
 .AppName {
   text-align: center;
+  color: white;
 }
 
 .Header2 {
   text-align: center;
+  color: white;
 }
 
 .AboutKoala {
   text-align: center;
+  color: white;
+}
+
+.btn.btn {
+  color: green;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /*width: 100%;*/
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 }

@@ -7,10 +7,28 @@ html
     script(src="/client.js")
 
   body
-    nav
-      if user
-        a(href="/signout") signout
-      else
-        a(href="/signin") signin
-        a(href="/signup") signup
+    nav.navbar.navbar-inverse
+        .container-fluid
+          .navbar-header
+            a.navbar-brand(href='/') FundKoala
+          ul.nav.navbar-nav
+            li.active
+              a(href='/') Home
+            li
+              a(href='#') Page 1
+            li
+              a(href='#') Page 2
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="#")
+                span.glyphicon.glyphicon-user
+                |  Profile
+            li
+              a(href="/signin")
+                span.glyphicon.glyphicon-log-in
+                |  Login
+            li
+              a(href="/signout")
+                span.glyphicon.glyphicon-log-in
+                |  Logout
     yield
