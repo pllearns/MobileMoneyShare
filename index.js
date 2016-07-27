@@ -105,22 +105,101 @@ app.post('/fakebullshit', function(req, res){
   res.send('whatever');
 })
 
-app.get('/funds/:fundSlug', function(req, res){
-  var fundSlug = req.params.fundSlug
 
-  // TODO get this from the Database
-  var fund = {
-    id: 456,
-    slug: fundSlug,
-    name: 'Sally Needs A Laptop',
-    cycleStartDate: new Date,
-    cycleAmount: '20000', // cents ($200)
-    cycleLength: 7, // days
-  };
+// index
+app.get('/funds', function(req, res){
 
-  res.render('funds/show', {
-    fund: fund
-  });
+})
+
+// new
+app.get('/funds/new', function(req, res){
+  res.render('funds/new', {
+    fund: {},
+    errors: [],
+  })
+})
+
+// create
+app.post('/funds', function(req, res){
+
+  var fundParams = req.body.fund
+
+  var fundAttributes = {
+    name:               fundParams.name,
+    paymentCycleLength: (fundParams.paymentCycleLength ? Number(fundParams.paymentCycleLength) : undefined),
+    paymentAmount:      (fundParams.paymentAmount      ? Number(fundParams.paymentAmount) : undefined),
+    cycleStartDate:     (fundParams.cycleStartDate     ? new Date(Date.parse(fundParams.cycleStartDate)) : undefined),
+  }
+
+  var fund = new req.models.fund(fundAttributes)
+
+  if (req.body.action === "confirm"){
+    console.log('ACTION CONFIRM')
+    fund.validate(function(_, errors){
+      console.log('validation errors:', errors)
+      if (errors){
+        res.render('funds/new', {
+          fund: req.body.fund,
+          errors: errors
+        });
+      }else{
+        // res.redirect('/funds/'+fund.id)
+        res.render('funds/confirm', {
+          fund: req.body.fund,
+        });
+      }
+    })
+    return
+  }
+
+  if (req.body.action === "edit"){
+    console.log('ACTION EDIT')
+    res.render('funds/new', {
+      fund: req.body.fund,
+    });
+    return
+  }
+
+  if (req.body.action === "create"){
+    console.log('ACTION CREATE')
+    fund.save(function(errors){
+      console.log('saved?', fund.id, errors)
+      if (errors){
+        res.render('funds/new', {
+          fund: req.body.fund,
+          errors: errors
+        });
+      }else{
+        res.redirect('/funds/'+fund.id)
+      }
+    })
+    return
+  }
+
+})
+
+// show
+app.get('/funds/:fundId', function(req, res){
+  req.models.fund.get(req.params.fundId, function(error, fund){
+    res.render('funds/show', {
+      error: error,
+      fund: fund
+    })
+  })
+})
+
+// edit
+app.get('/funds/:fundId/edit', function(req, res){
+})
+
+// update
+app.post('/funds/:fundId', function(req, res){
+
+})
+
+// delete
+app.delete('/funds', function(req, res){
+
 })
 
 app.listen(port)

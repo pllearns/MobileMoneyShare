@@ -8,6 +8,7 @@ var defineModels = function (db, models, next) {
   db.settings.set("instance.returnAllErrors", true);
 
   models.user = require('./models/user')(db)
+  models.fund = require('./models/fund')(db)
 
   db.sync(function(err) {
     if (err) throw err;
