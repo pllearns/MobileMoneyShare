@@ -1,7 +1,16 @@
 include layout
   if user
-    h1 Welcome back #{user.name}
+    h1.AppName Welcome back #{user.name}
     div #{JSON.stringify(user)}
   else
-    h1 Fund Koala
-    h2 We're Koalafied to manage your FUNds!
+    h1.AppName Fund Koala
+    h2.Header2 We're Koalafied to manage your FUNds!
+    h4.AboutKoala An App that helps you save money in a shared fund
+    br
+    br
+    br
+    br
+    .clearfix.visible-xs-block
+    .col-xs-5
+    button.btn
+          a(href="/signup").btn Create A Fund
