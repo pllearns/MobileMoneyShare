@@ -5,9 +5,13 @@ var connectionString = process.env.DATABASE_URL || 'postgres://'+process.env.USE
 console.log('connectionString', connectionString)
 
 var defineModels = function (db, models, next) {
+  db.settings.set("debug", true);
+  db.settings.debug = true
   db.settings.set("instance.returnAllErrors", true);
 
-  models.user = require('./models/user')(db)
+  models.User = require('./models/user')(db, models)
+  models.Fund = require('./models/fund')(db, models)
+  models.FundMembership = require('./models/fundMembership')(db, models)
 
   db.sync(function(err) {
     if (err) throw err;
