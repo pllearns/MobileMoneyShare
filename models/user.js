@@ -1,13 +1,32 @@
 var orm = require('orm')
 
 module.exports = function(db){
-  var schema = {
-    name:     String,
-    email:    String,
-    password: String,
-    passwordConfirmation: String,
-  }
-  return db.define("user", schema, {
+  let User = db.define("users", {
+      id: {
+        type: 'serial',
+        key: true
+      },
+      name: {
+        type: 'text',
+        required: true,
+        alwaysValidate: true,
+      },
+      email: {
+        type: 'text',
+        required: true,
+        alwaysValidate: true,
+      },
+      password: {
+        type: 'text',
+        required: true,
+        alwaysValidate: true,
+      },
+      passwordConfirmation: {
+        type: 'text',
+        required: true,
+        alwaysValidate: true,
+      },
+    }, {
     validations : {
       name: [
         orm.enforce.notEmptyString("name cannot be blank"),
@@ -24,4 +43,8 @@ module.exports = function(db){
       ],
     }
   });
+
+  User.sync();
+
+  return User;
 }

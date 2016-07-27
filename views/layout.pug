@@ -8,7 +8,7 @@ html
 
   body
     nav
-      if user
+      if currentUser
         a(href="/signout") signout
       else
         a(href="/signin") signin

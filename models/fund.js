@@ -1,7 +1,7 @@
 var orm = require('orm')
 
-module.exports = function(db){
-  var schema = {
+module.exports = function(db, User){
+  var Fund = db.define("funds", {
     name: {
       type: 'text',
       required: true,
@@ -22,9 +22,7 @@ module.exports = function(db){
       required: true,
       alwaysValidate: true,
     },
-  }
-
-  return db.define("fund", schema, {
+  }, {
     validations : {
       name: [
         orm.enforce.notEmptyString("name cannot be blank"),
@@ -41,6 +39,10 @@ module.exports = function(db){
       ]
     }
   });
+
+  Fund.sync()
+
+  return Fund;
 }
 
 

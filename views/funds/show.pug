@@ -4,3 +4,8 @@ include ../layout
   div #{fund.cycleStartDate}
   div #{fund.paymentCycleLength}
   div #{fund.paymentAmount}
+
+
+  h2 Members
+
+  pre #{JSON.stringify(fundMemberships)}

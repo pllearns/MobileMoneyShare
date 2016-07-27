@@ -1,7 +1,7 @@
 include layout
-  if user
-    h1 Welcome back #{user.name}
-    div #{JSON.stringify(user)}
+  if currentUser
+    h1 Welcome back #{currentUser.name}
+    div #{JSON.stringify(currentUser)}
   else
     h1 Fund Koala
     h2 We're Koalafied to manage your FUNds!
