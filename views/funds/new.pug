@@ -4,36 +4,43 @@ include ../layout
 //- TODO figure out how to import mixins
 mixin form-errors(errors, property)
   if errors
-    ol.errors
+    ol.form-errors
       each error in errors
         if error && error.property === property
-          li #{error.msg}
+          li.form-error #{error.msg}
 
+form(method="post" action="/funds")
 
-div.temp-pad
-  form(method="post" action="/funds")
+  fieldset.form-group
+    label(for="fund-name") Name
+    input.form-control(type="text", name="fund[name]" id="fund-name" value=fund.name)
+    +form-errors(errors, "name")
 
-    fieldset.form-group
-      label(for="fund-name") Name
-      input.form-control(type="text", name="fund[name]" id="fund-name" value=fund.name)
-      +form-errors(errors, "name")
+  fieldset.form-group
+    label(for="fund-cycleStartDate") Cyle Start Date
+    input.form-control(type="date", name="fund[cycleStartDate]" id="fund-cycleStartDate" value=fund.cycleStartDate)
+    small.text-muted (in days)
+    +form-errors(errors, "cycleStartDate")
 
-    fieldset.form-group
-      label(for="fund-cycleStartDate") Cyle Start Date
-      input.form-control(type="date", name="fund[cycleStartDate]" id="fund-cycleStartDate" value=fund.cycleStartDate)
-      small.text-muted (in days)
-      +form-errors(errors, "cycleStartDate")
+  fieldset.form-group
+    label(for="fund-paymentCycleLength") Payment Cyle
+    input.form-control(type="number", name="fund[paymentCycleLength]" id="fund-paymentCycleLength" value=fund.paymentCycleLength)
+    small.text-muted (in days)
+    +form-errors(errors, "paymentCycleLength")
 
-    fieldset.form-group
-      label(for="fund-paymentCycleLength") Payment Cyle
-      input.form-control(type="number", name="fund[paymentCycleLength]" id="fund-paymentCycleLength" value=fund.paymentCycleLength)
-      small.text-muted (in days)
-      +form-errors(errors, "paymentCycleLength")
+  fieldset.form-group
+    label(for="fund-paymentAmount") Payment Amount
+    input.form-control(type="number", name="fund[paymentAmount]" id="fund-paymentAmount" value=fund.paymentAmount)
+    small.text-muted (in cents)
+    +form-errors(errors, "paymentAmount")
 
-    fieldset.form-group
-      label(for="fund-paymentAmount") Payment Amount
-      input.form-control(type="number", name="fund[paymentAmount]" id="fund-paymentAmount" value=fund.paymentAmount)
-      small.text-muted (in cents)
-      +form-errors(errors, "paymentAmount")
+  fieldset.form-group
+    label Invites
+    each invite, index in fund.invites
+      .row
+        .col-md-6
+          input.form-control(type="text", name="fund[invites]["+index+"][name]"  value=fund.invites[index].name placeholder="Jane Smith")
+        .col-md-6
+          input.form-control(type="text", name="fund[invites]["+index+"][email]" value=fund.invites[index].email placeholder="jane.smith@example.org")
 
-    button.btn.btn-primary(type="submit" name="action" value="confirm") Create
+  button.btn.btn-primary(type="submit" name="action" value="confirm") Create

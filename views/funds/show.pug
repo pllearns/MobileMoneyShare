@@ -1,11 +1,26 @@
 include ../layout
-  h1 #{fund.name}
-
-  div #{fund.cycleStartDate}
-  div #{fund.paymentCycleLength}
-  div #{fund.paymentAmount}
-
-
-  h2 Members
-
-  pre #{JSON.stringify(fundMemberships)}
+  h2 #{fund.name}
+  div
+    h4 cycleStartDate:
+    div #{fund.cycleStartDate}
+  div
+    h4 paymentCycleLength:
+    div #{fund.paymentCycleLength}
+  div
+    h4 paymentAmount:
+    div #{fund.paymentAmount}
+  div
+    h4 Invites:
+    each invite in fund.invites
+      div
+        strong name: &nbsp;
+        span #{JSON.stringify(invite.name)}
+        span &nbsp;
+        strong email: &nbsp;
+        span #{JSON.stringify(invite.email)}
+  div
+    h4 Memberships:
+    each member in fund.memberships
+      div
+        div #{JSON.stringify(member)}
+        

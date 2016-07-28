@@ -1,14 +1,19 @@
 //- TODO figure out how to import mixins
 mixin form-errors(errors, property)
-  ol.errors
+  ol.form-errors
     each error in errors
       if error && error.property === property
-        li #{error.msg}
+        li.form-error #{error.msg}
 
 include layout
-  h1.Header Sign Up
-  form(method="post", action="/signup")
+  h1 Sign Up
+  p
+    span Already have an account?
+    a(href="/signin?"+query) Click here to sign in
 
+  form(method="post", action="/signup")
+    input(type="hidden" name="goto" value=goto)
+      
     ol
       each error in errors
         li= JSON.stringify(error)
