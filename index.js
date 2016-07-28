@@ -121,7 +121,7 @@ app.post('/fakebullshit', function(req, res){
 
 
 // index
-app.get('/funds', function(req, res){
+app.get('/', function(req, res){
 
 })
 
