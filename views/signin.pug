@@ -13,7 +13,7 @@ include layout
 
   form(method="post", action="/signin")
     input(type="hidden" name="goto" value=goto)
-      
+
     if loginFailed
       h2 Bad username or password
 
@@ -27,4 +27,4 @@ include layout
       input.form-control(type="password", name="password" id="user-password")
 
 
-    button.btn.btn-primary(type="submit") Signin
+    button.btn.btn-primary(type="submit") Login
