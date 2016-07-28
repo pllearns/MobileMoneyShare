@@ -11,6 +11,7 @@ var defineModels = function (db, models, next) {
 
   models.User = require('./models/user')(db, models)
   models.Fund = require('./models/fund')(db, models)
+  models.Invite = require('./models/invite')(db, models)
   models.FundMembership = require('./models/fundMembership')(db, models)
 
   db.sync(function(err) {

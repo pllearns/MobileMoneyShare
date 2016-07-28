@@ -1,6 +1,6 @@
 var orm = require('orm')
 
-module.exports = function(db, User){
+module.exports = function(db, models){
   var Fund = db.define("funds", {
     name: {
       type: 'text',
