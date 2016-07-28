@@ -10,29 +10,30 @@ mixin form-errors(errors, property)
           li #{error.msg}
 
 
-form(method="post" action="/funds")
+div.temp-pad
+  form(method="post" action="/funds")
 
-  fieldset.form-group
-    label(for="fund-name") Name
-    input.form-control(type="text", name="fund[name]" id="fund-name" value=fund.name)
-    +form-errors(errors, "name")
+    fieldset.form-group
+      label(for="fund-name") Name
+      input.form-control(type="text", name="fund[name]" id="fund-name" value=fund.name)
+      +form-errors(errors, "name")
 
-  fieldset.form-group
-    label(for="fund-cycleStartDate") Cyle Start Date
-    input.form-control(type="date", name="fund[cycleStartDate]" id="fund-cycleStartDate" value=fund.cycleStartDate)
-    small.text-muted (in days)
-    +form-errors(errors, "cycleStartDate")
+    fieldset.form-group
+      label(for="fund-cycleStartDate") Cyle Start Date
+      input.form-control(type="date", name="fund[cycleStartDate]" id="fund-cycleStartDate" value=fund.cycleStartDate)
+      small.text-muted (in days)
+      +form-errors(errors, "cycleStartDate")
 
-  fieldset.form-group
-    label(for="fund-paymentCycleLength") Payment Cyle
-    input.form-control(type="number", name="fund[paymentCycleLength]" id="fund-paymentCycleLength" value=fund.paymentCycleLength)
-    small.text-muted (in days)
-    +form-errors(errors, "paymentCycleLength")
+    fieldset.form-group
+      label(for="fund-paymentCycleLength") Payment Cyle
+      input.form-control(type="number", name="fund[paymentCycleLength]" id="fund-paymentCycleLength" value=fund.paymentCycleLength)
+      small.text-muted (in days)
+      +form-errors(errors, "paymentCycleLength")
 
-  fieldset.form-group
-    label(for="fund-paymentAmount") Payment Amount
-    input.form-control(type="number", name="fund[paymentAmount]" id="fund-paymentAmount" value=fund.paymentAmount)
-    small.text-muted (in cents)
-    +form-errors(errors, "paymentAmount")
+    fieldset.form-group
+      label(for="fund-paymentAmount") Payment Amount
+      input.form-control(type="number", name="fund[paymentAmount]" id="fund-paymentAmount" value=fund.paymentAmount)
+      small.text-muted (in cents)
+      +form-errors(errors, "paymentAmount")
 
-  button.btn.btn-primary(type="submit" name="action" value="confirm") Create
+    button.btn.btn-primary(type="submit" name="action" value="confirm") Create
