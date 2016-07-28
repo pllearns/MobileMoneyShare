@@ -1,8 +1,10 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session')
-var mailer = require('./lib/mailer')
+var Mailer = require('./lib/mailer')
 var uuid = require('node-uuid')
+var URL = require('url')
+
 
 
 var app = express()
@@ -15,26 +17,6 @@ app.set('view engine', 'pug');
 
 app.use(express.static('public'));
 
-app.use(db.middleware)
-
-app.use(function(req, res, next){
-  req.getCurrentUser = function(callback){
-    if (req.session.userId)
-      req.models.User.get(req.session.userId, function(error, currentUser){
-        if (currentUser){
-          console.log('currentUser', currentUser)
-          callback(error, currentUser)
-        }else{
-          console.log('CANNOT FIDM CURETN SUSER')
-          req.session = null
-          res.redirect('/')
-        }
-      })
-    else
-      callback(null, null)
-  }
-  next();
-})
 
 app.use(cookieSession({
   name: 'fundkoala',
@@ -43,6 +25,36 @@ app.use(cookieSession({
     'b18177e442d2bac2b1b7a62a705e3443a9f3c363',
   ]
 }))
+
+app.use(db.middleware)
+
+app.use(function(req, res, next){
+  req.mailer = new Mailer({
+    host: req.protocol + '://' + req.get('host')
+  })
+  next();
+});
+
+app.use(function(req, res, next){
+  req.currentUserId = req.session ? req.session.userId : null
+  req.loggedIn = !!req.currentUserId
+
+  req.getCurrentUser = function(callback){
+    if (req.session.userId)
+      req.models.User.get(req.session.userId, function(error, currentUser){
+        if (currentUser){
+          console.log('currentUser', currentUser)
+          callback(error, currentUser)
+        }else{
+          req.session = null
+          res.redirect('/?goto='+req.url)
+        }
+      })
+    else
+      callback(null, null)
+  }
+  next();
+})
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -55,8 +67,13 @@ app.get('/', function(req, res){
 
 app.get('/signup', function(req, res){
   res.render('signup', {
-    user: new req.models.User(),
+    user: new req.models.User({
+      name: req.query.name,
+      email: req.query.email,
+    }),
     errors: [],
+    query: URL.parse(req.url).query,
+    goto: req.query.goto,
   });
 })
 
@@ -65,16 +82,15 @@ app.post('/signup', function(req, res){
   var user = new req.models.User(userAttributes)
 
   user.save(function(errors){
-    console.log('saved?', user.id, user, errors)
     if (errors){
       res.render('signup', {
         user: user,
-        errors: errors
+        errors: errors,
+        goto: req.body.goto,
       });
     }else{
-      console.log('signing in as user', user.id, user)
       req.session.userId = user.id
-      res.redirect('/')
+      res.redirect(req.body.goto || '/')
     }
   })
 })
@@ -86,7 +102,9 @@ app.get('/signin', function(req, res){
     return
   }
   res.render('signin', {
-    email: "",
+    email: req.query.email,
+    query: URL.parse(req.url).query,
+    goto: req.query.goto,
   })
 })
 
@@ -96,11 +114,12 @@ app.post('/signin', function(req, res){
   req.models.User.find({email:req.body.email, password:req.body.password}, function(error, users){
     if (users[0]){
       req.session.userId = users[0].id
-      res.redirect('/')
+      res.redirect(req.body.goto || '/')
     }else{
       res.render('signin', {
         email: req.body.email,
         loginFailed: true,
+        goto: req.body.goto,
       })
     }
   })
@@ -131,7 +150,14 @@ app.get('/funds/new', function(req, res){
   req.getCurrentUser(function(error, currentUser){
     if (!currentUser) return res.redirect('/signin')
     res.render('funds/new', {
-      fund: {},
+      fund: {
+        invites: [
+          {name: '', email:''},
+          {name: '', email:''},
+          {name: '', email:''},
+          {name: '', email:''},
+        ]
+      },
       errors: [],
     })
   })
@@ -144,6 +170,9 @@ app.post('/funds', function(req, res){
 
     var fundParams = req.body.fund
 
+    fundParams.invites = fundParams.invites.filter(function(invite){
+      return invite.name && invite.email
+    })
     fundParams.invites.forEach(function(invite){
       invite.code = uuid.v1()
     })
@@ -159,9 +188,7 @@ app.post('/funds', function(req, res){
     var fund = new req.models.Fund(fundAttributes)
 
     if (req.body.action === "confirm"){
-      console.log('ACTION CONFIRM')
       fund.validate(function(_, errors){
-        console.log('validation errors:', errors)
         if (errors){
           res.render('funds/new', {
             fund: req.body.fund,
@@ -178,7 +205,6 @@ app.post('/funds', function(req, res){
     }
 
     if (req.body.action === "edit"){
-      console.log('ACTION EDIT')
       res.render('funds/new', {
         fund: req.body.fund,
       });
@@ -186,9 +212,7 @@ app.post('/funds', function(req, res){
     }
 
     if (req.body.action === "create"){
-      console.log('ACTION CREATE')
       fund.save(function(errors){
-        console.log('saved?', fund.id, errors)
         if (errors){
           res.render('funds/new', {
             fund: req.body.fund,
@@ -205,7 +229,7 @@ app.post('/funds', function(req, res){
           fund.setMemberships(memberships, function(error){
             if (error) throw error;
             // TODO send emails to invite emails
-            mailer.sendFundInvites(fund, function(emails){
+            req.mailer.sendFundInvites(fund, function(emails){
               res.redirect('/funds/'+fund.id)
             })
           })
@@ -246,6 +270,69 @@ app.post('/funds/:fundId', function(req, res){
 
 // delete
 app.delete('/funds', function(req, res){
+
+})
+
+app.get('/invites/:inviteCode', function(req, res){
+  var inviteCode = req.params.inviteCode
+  var action = req.query.action
+  req.models.Invite.one({code: inviteCode}, function(error, invite){
+    if (error) throw error
+    if (!invite){
+      res.send('Bad invite')
+      return
+    }
+    invite.getFund(function(error, fund){
+      if (error) throw error
+      fund.getMemberships(function(error){
+        if (error) throw error
+        if (req.loggedIn){
+          var membership = fund.memberships.find(function(membership){
+            return membership.user_id == req.currentUserId
+          })
+          if (membership){
+            res.redirect('/funds/'+fund.id)
+            return
+          }
+        }
+        if (action === 'accept'){
+          if (req.loggedIn){
+            var membership = new req.models.FundMembership({
+              fund_creator: false,
+              fund_id: fund.id,
+              user_id: req.currentUserId,
+            })
+            membership.save(function(error){
+              if (error) throw error;
+              res.redirect('/funds/'+fund.id)
+            })
+          }else{
+            var signupURL = URL.format({
+              pathname: '/signup',
+              query: {
+                goto: req.url,
+                name: invite.name,
+                email: invite.email,
+              }
+            })
+            res.redirect(signupURL)
+          }
+          // if logged in
+            // add current user as member to fund
+          // else
+           // redirect to login with goto callback url
+        }else if (action === 'reject'){
+          res.redirect('/')
+        }else {
+          res.render('funds/invite', {
+            invite: invite,
+            fund: fund,
+          })
+        }
+      })
+    })
+
+  })
 
 })
 

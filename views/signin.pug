@@ -7,8 +7,13 @@ mixin form-errors(errors, property)
 
 include layout
   h1 Sign In
-  form(method="post", action="/signin")
+  p
+    span Don't have an account?
+    a(href="/signup?"+query) Click here to sign up
 
+  form(method="post", action="/signin")
+    input(type="hidden" name="goto" value=goto)
+      
     if loginFailed
       h2 Bad username or password
 
