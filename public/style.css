@@ -1,8 +1,6 @@
 .bkimg {
   background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.4)), url("https://camo.githubusercontent.com/4cff3b622671bc20d9186b69a69a2ec3d0e975e1/68747470733a2f2f732d6d656469612d63616368652d616b302e70696e696d672e636f6d2f373336782f31352f38632f61322f31353863613266376539653163306534376165663039666531633866343033392e6a7067");
   background-size: cover;
-  /*-webkit-filter: blur(5px);*/
-  filter: blur(5px);
 }
 
 h1, h2 {
