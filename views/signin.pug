@@ -6,7 +6,7 @@ mixin form-errors(errors, property)
         li #{error.msg}
 
 include layout
-  h1 Sign In
+  h1.Header Log In
   form(method="post", action="/signin")
 
     if loginFailed
@@ -22,4 +22,4 @@ include layout
       input.form-control(type="password", name="password" id="user-password")
 
 
-    button.btn.btn-primary(type="submit") Signin
+    button.btn.btn-primary(type="submit") Login
