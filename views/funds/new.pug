@@ -4,10 +4,10 @@ include ../layout
 //- TODO figure out how to import mixins
 mixin form-errors(errors, property)
   if errors
-    ol.errors
+    ol.form-errors
       each error in errors
         if error && error.property === property
-          li #{error.msg}
+          li.form-error #{error.msg}
 
 
 form(method="post" action="/funds")
@@ -34,5 +34,28 @@ form(method="post" action="/funds")
     input.form-control(type="number", name="fund[paymentAmount]" id="fund-paymentAmount" value=fund.paymentAmount)
     small.text-muted (in cents)
     +form-errors(errors, "paymentAmount")
+
+  fieldset.form-group
+    label Invites
+    .row
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][0][name]"  value=(fund.invites[0].name || "A Smith"))
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][0][email]" value=(fund.invites[0].email || "a@example.com"))
+    .row
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][1][name]"   value=(fund.invites[1].name || "B Smith"))
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][1][email]"  value=(fund.invites[1].email || "b@example.com"))
+    .row
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][2][name]"   value=(fund.invites[2].name || "C Smith"))
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][2][email]"  value=(fund.invites[2].email || "c@example.com"))
+    .row
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][3][name]"   value=(fund.invites[3].name || "D Smith"))
+      .col-md-6
+        input.form-control(type="text", name="fund[invites][3][email]"  value=(fund.invites[3].email || "d@example.com"))
 
   button.btn.btn-primary(type="submit" name="action" value="confirm") Create

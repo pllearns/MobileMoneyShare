@@ -1,7 +1,8 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session')
-
+var mailer = require('./lib/mailer')
+var uuid = require('node-uuid')
 
 
 var app = express()
@@ -143,11 +144,16 @@ app.post('/funds', function(req, res){
 
     var fundParams = req.body.fund
 
+    fundParams.invites.forEach(function(invite){
+      invite.code = uuid.v1()
+    })
+
     var fundAttributes = {
       name:               fundParams.name,
       paymentCycleLength: (fundParams.paymentCycleLength ? Number(fundParams.paymentCycleLength) : undefined),
       paymentAmount:      (fundParams.paymentAmount      ? Number(fundParams.paymentAmount) : undefined),
       cycleStartDate:     (fundParams.cycleStartDate     ? new Date(Date.parse(fundParams.cycleStartDate)) : undefined),
+      invites:            fundParams.invites,
     }
 
     var fund = new req.models.Fund(fundAttributes)
@@ -189,21 +195,19 @@ app.post('/funds', function(req, res){
             errors: errors
           });
         }else{
-          // fund.addMember(currentUser)
-
-          console.log('req.models', req.models)
-          var fundMembership = new req.models.FundMembership({
-            fund_creator: true,
-            fund_id: fund.id,
-            user_id: currentUser.id,
-          })
-
-          fundMembership.save(function(error, fundMembership){
-            if (error){
-              res.send('ERROR'+JSON.stringify(error), 500)
-            }else{
+          var memberships = [
+            new req.models.FundMembership({
+              fund_creator: true,
+              fund_id: fund.id,
+              user_id: currentUser.id,
+            })
+          ]
+          fund.setMemberships(memberships, function(error){
+            if (error) throw error;
+            // TODO send emails to invite emails
+            mailer.sendFundInvites(fund, function(emails){
               res.redirect('/funds/'+fund.id)
-            }
+            })
           })
         }
       })
@@ -216,12 +220,16 @@ app.post('/funds', function(req, res){
 // show
 app.get('/funds/:fundId', function(req, res){
   req.models.Fund.get(req.params.fundId, function(error, fund){
+    if (error) throw error
     if (!fund) return res.status(404).send('Fund Not Found')
-    fund.getFundMemberships(function(error, fundMemberships){
-      res.render('funds/show', {
-        error: error,
-        fund: fund,
-        fundMemberships: fundMemberships,
+    fund.getInvites(function(error){
+      if (error) throw error
+      fund.getMemberships(function(error){
+        if (error) throw error
+        res.render('funds/show', {
+          error: error,
+          fund: fund,
+        })
       })
     })
   })

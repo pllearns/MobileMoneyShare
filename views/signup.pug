@@ -1,9 +1,9 @@
 //- TODO figure out how to import mixins
 mixin form-errors(errors, property)
-  ol.errors
+  ol.form-errors
     each error in errors
       if error && error.property === property
-        li #{error.msg}
+        li.form-error #{error.msg}
 
 include layout
   h1 Sign Up
@@ -35,5 +35,3 @@ include layout
       +form-errors(errors, "passwordConfirmation")
 
     button.btn.btn-primary(type="submit") Signup
-
-

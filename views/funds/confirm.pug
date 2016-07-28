@@ -2,17 +2,23 @@ include ../layout
   h1 are you sure?
   h2 #{fund.name}
   div
-    span cycleStartDate:
-    span
-    span #{fund.cycleStartDate}
+    h4 cycleStartDate:
+    div #{fund.cycleStartDate}
   div
-    span paymentCycleLength:
-    span
-    span #{fund.paymentCycleLength}
+    h4 paymentCycleLength:
+    div #{fund.paymentCycleLength}
   div
-    span paymentAmount:
-    span
-    span #{fund.paymentAmount}
+    h4 paymentAmount:
+    div #{fund.paymentAmount}
+  div
+    h4 Invites:
+    each invite, index in fund.invites
+      div
+        strong name: &nbsp;
+        span #{JSON.stringify(fund.invites[index].name)}
+        span &nbsp;
+        strong email: &nbsp;
+        span #{JSON.stringify(fund.invites[index].email)}
 
   form(method="post" action="/funds")
     input(type="hidden" name="fund[name]" value=fund.name)
@@ -20,6 +26,10 @@ include ../layout
     input(type="hidden" name="fund[paymentAmount]" value=fund.paymentAmount)
     input(type="hidden" name="fund[cycleStartDate]" value=fund.cycleStartDate)
 
+    each invite, index in fund.invites
+      input(type="hidden" name="fund[invites]["+index+"][name]" value=fund.invites[index].name)
+      input(type="hidden" name="fund[invites]["+index+"][email]" value=fund.invites[index].email)
+
     button.btn(type="submit" name="action" value="edit") Edit
     button.btn.btn-primary(type="submit" name="action" value="create") Create
-/* Would the button need to be connected to a function in the Database */
+    //- Would the button need to be connected to a function in the Database
