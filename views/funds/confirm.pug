@@ -2,14 +2,16 @@ include ../layout
   h1 are you sure?
   h2 #{fund.name}
   div
-    h4 cycleStartDate:
+    h4 Cycle Start Date:
     div #{fund.cycleStartDate}
   div
-    h4 paymentCycleLength:
+    h4 Payment Cycle Length:
     div #{fund.paymentCycleLength}
   div
-    h4 paymentAmount:
-    div #{fund.paymentAmount}
+    h4 Payment Amount:
+    div $#{(parseFloat(fund.paymentAmount, 10)/100).toFixed(2)}
+
+
   div
     h4 Invites:
     each invite, index in fund.invites

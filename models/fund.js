@@ -45,11 +45,6 @@ module.exports = function(db, models){
   return Fund;
 }
 
-function intToFloat(paymentAmount, decPlaces) {
-  return fund.paymentAmount + '.' + Array(decPlaces + 1).join('0');
-}
-
-
 function dateValidator(value, next){
   console.log('dateValidator', [value])
   const now = new Date
