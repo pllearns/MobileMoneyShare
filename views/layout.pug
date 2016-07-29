@@ -24,28 +24,14 @@ html
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href='#')
-                | Link 
-                span.sr-only (current)
+              a(href='funds/new')
+                | Create a Fund   
             li
-              a(href='#') Link
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                | Dropdown 
-                span.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Action
-                li
-                  a(href='#') Another action
-                li
-                  a(href='#') Something else here
-                li.divider(role='separator')
-                li
-                  a(href='#') Separated link
-                li.divider(role='separator')
-                li
-                  a(href='#') One more separated link
+              a(href='/signup') Sign Up
+            li
+              a(href='/signin') Log In 
+            li
+              a(href='/signout') Log Out     
         // /.navbar-collapse
       // /.container-fluid
 

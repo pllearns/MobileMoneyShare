@@ -7,24 +7,26 @@ mixin form-errors(errors, property)
 
 include layout
   h1 Sign In
-  p
-    span Don't have an account?
-    a(href="/signup?"+query) Click here to sign up
+  .row
+    .col-xs-12.col-sm-6.col-md-8 
+      p
+        span Don't have an account?
+        a(href="/signup?"+query).link   Click here to sign up
 
-  form(method="post", action="/signin")
-    input(type="hidden" name="goto" value=goto)
+      form(method="post", action="/signin")
+        input(type="hidden" name="goto" value=goto)
 
-    if loginFailed
-      h2 Bad username or password
+        if loginFailed
+          h2 Bad username or password
 
-    fieldset.form-group
-      label(for="user-email") Email Address
-      input.form-control(type="text", name="email" id="user-email" value=email)
-      small.text-muted We'll never share your email with anyone else.
+        fieldset.form-group
+          label(for="user-email") Email Address
+          input.form-control(type="text", name="email" id="user-email" value=email)
+          small.text-muted We'll never share your email with anyone else.
 
-    fieldset.form-group
-      label(for="user-password") Password
-      input.form-control(type="password", name="password" id="user-password")
+        fieldset.form-group
+          label(for="user-password") Password
+          input.form-control(type="password", name="password" id="user-password")
 
 
-    button.btn.btn-primary(type="submit") Login
+        button.btn.btn-primary(type="submit") Login
