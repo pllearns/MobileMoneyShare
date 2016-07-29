@@ -72,13 +72,13 @@ Sam is paid $600
 
 ## Specifications
 
-- [ ] Mobile responsive
-- [ ] Manipulate Bootstrap to achieve modern looking UI
-- [ ] Needs to be able to use dynamic data
-- [ ] Must be able to do user authentication – Log In/Log Out/Sign Up
+- [x] Mobile responsive
+- [x] Manipulate Bootstrap to achieve modern looking UI
+- [x] Needs to be able to use dynamic data
+- [x] Must be able to do user authentication – Log In/Log Out/Sign Up
 - [ ] User must be able to update profile
 - [ ] Fund and payment cycles info (Ledger) must update based on number of users
-- [ ] Confirmation emails sent to new users with amount of accepted members and fund/payment cycle info
+- [x] Confirmation emails sent to new users with amount of accepted members and fund/payment cycle info
 - [ ] Must use an algorithm to figure out how much each person in the network must share
 
 
