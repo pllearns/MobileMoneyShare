@@ -45,6 +45,10 @@ module.exports = function(db, models){
   return Fund;
 }
 
+// function paymentAmount() {
+//   var integer = 0;
+//   integer.toFixed(2);
+// }
 
 function dateValidator(value, next){
   console.log('dateValidator', [value])
