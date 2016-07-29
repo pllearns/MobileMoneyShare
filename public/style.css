@@ -1,4 +1,6 @@
-
+.btn-primary {
+  
+}
 .temp-pad {
   padding-right: 50px;
   padding-left: 50px; 
@@ -56,8 +58,17 @@ small.text-muted {
   font-weight: bold;
 }
 
-.formgroup {
+.form-group {
   margin: 20px;
+  font-size: 24px;
+}
+
+span {
+  color: white;
+}
+
+.link {
+  color: white;
 }
 
 

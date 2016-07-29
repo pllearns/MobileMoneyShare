@@ -170,6 +170,7 @@ app.post('/funds', function(req, res){
 
     var fundParams = req.body.fund
 
+    fundParams.invites = fundParams.invites || [];
     fundParams.invites = fundParams.invites.filter(function(invite){
       return invite.name && invite.email
     })
