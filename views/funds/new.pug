@@ -18,13 +18,13 @@ form(method="post" action="/funds")
     +form-errors(errors, "name")
 
   fieldset.form-group
-    label(for="fund-cycleStartDate") Cyle Start Date
+    label(for="fund-cycleStartDate") Cycle Start Date
     input.form-control(type="date", name="fund[cycleStartDate]" id="fund-cycleStartDate" value=fund.cycleStartDate)
     small.text-muted (in days)
     +form-errors(errors, "cycleStartDate")
 
   fieldset.form-group
-    label(for="fund-paymentCycleLength") Payment Cyle
+    label(for="fund-paymentCycleLength") Payment Cycle
     input.form-control(type="number", name="fund[paymentCycleLength]" id="fund-paymentCycleLength" value=fund.paymentCycleLength)
     small.text-muted (in days)
     +form-errors(errors, "paymentCycleLength")

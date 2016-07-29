@@ -18,7 +18,7 @@ module.exports = function(db, models){
       alwaysValidate: true,
     },
     paymentAmount: {
-      type: 'integer',
+      type: 'integer', //could I enter a converter here??? Or would it go on another page?
       required: true,
       alwaysValidate: true,
     },
@@ -45,6 +45,10 @@ module.exports = function(db, models){
   return Fund;
 }
 
+function intToFloat(paymentAmount, decPlaces) {
+  return fund.paymentAmount + '.' + Array(decPlaces + 1).join('0');
+}
+
 
 function dateValidator(value, next){
   console.log('dateValidator', [value])
@@ -61,3 +65,20 @@ function paymentAmountValidator(value, next){
   console.log('paymentAmountValidator', [value])
   next()
 }
+
+//function fundCycle() {
+//if(document.calc.fund.paymentCycleLength === null || )
+//}
+
+//or
+// math.config({
+//   var payDate {
+//     if (FundMembership.user_id >
+//     },
+//     number: models.fund.fundId,
+ //
+// })
+
+
+//the point is that I need to calculate the fund amount and date based on
+//the preferred payment cycle and amount
