@@ -116,7 +116,7 @@ CRUD:
 
 Do not remove these specs - they are required for all goals.
 
-- [ ] The artifact produced is properly licensed, preferably with the MIT license.
+- [x] The artifact produced is properly licensed, preferably with the MIT license.
 
 
 
