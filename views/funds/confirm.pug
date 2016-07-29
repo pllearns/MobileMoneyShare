@@ -1,21 +1,21 @@
 include ../layout
   h1 are you sure?
-  h2 #{fund.name}
+  h2(style='color:white;') #{fund.name} 
   div
-    h4 Cycle Start Date:
-    div #{fund.cycleStartDate}
+    h4(style='color:white;') Cycle Start Date:
+    div.span #{fund.cycleStartDate}
   div
-    h4 Payment Cycle Length:
-    div #{fund.paymentCycleLength}
+    h4(style='color:white;') Payment Cycle Length:
+    div.span #{fund.paymentCycleLength}
   div
-    h4 Payment Amount:
-    div $#{(parseFloat(fund.paymentAmount, 10)/100).toFixed(2)}
+    h4(style='color:white;') Payment Amount:
+    div.span $#{(parseFloat(fund.paymentAmount, 10)/100).toFixed(2)}
 
 
   div
-    h4 Invites:
+    h4(style='color:white;') Invites:
     each invite, index in fund.invites
-      div
+      div.span
         strong name: &nbsp;
         span #{JSON.stringify(fund.invites[index].name)}
         span &nbsp;
