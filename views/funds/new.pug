@@ -10,8 +10,8 @@ mixin form-errors(errors, property)
           li.form-error #{error.msg}
 
 form(method="post" action="/funds")
-.row
-    .col-xs-12.col-sm-6.col-md-8 
+  .row
+    .col-xs-12.col-sm-6.col-md-8
       fieldset.form-group
         label(for="fund-name") Name
         input.form-control(type="text", name="fund[name]" id="fund-name" value=fund.name)
