@@ -4,24 +4,22 @@ include layout
     //-div #{JSON.stringify(currentUser)}
     h1.AppName Fund Koala
     h2.Header We're Koalafied to manage your FUNds!
-    h4.AboutKoala An App that helps you save money in a shared fund
+    h4.AboutKoala Need to raise money for something essential? Want to loan money to a friend in need? Want to hold yourself to saving money over a period of time? An App that helps you save money in a shared fund with your friends.
     br
     br
     br
     br
     .clearfix.visible-xs-block
-    .col-xs-5
-    button.btn
-          a(href="/funds/new").btn Create A Fund 
+    button.btn(type='button', style='background-color:white;margin-left:auto;margin-right:auto;display:block;margin-top:22%;margin-bottom:0%')
+          a(href="/signup").btn Create A Fund - Sign Up
   else
     h1.AppName Fund Koala
     h2.Header We're Koalafied to manage your FUNds!
-    h4.
+    h4.AboutKoala Need to raise money for something essential? Want to loan money to a friend in need? Want to hold yourself to saving money over a period of time? An App that helps you save money in a shared fund with your friends.
     br
     br
     br
     br
     .clearfix.visible-xs-block
-    .col-xs-5
-    button.btn
+    button.btn(type='button', style='background-color:white;margin-left:auto;margin-right:auto;display:block;margin-top:22%;margin-bottom:0%')
           a(href="/signup").btn Create A Fund - Sign Up
