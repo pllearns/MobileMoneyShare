@@ -10,29 +10,44 @@ html
 
   body.bkimg
     .container-fluid
-    nav.navbar.navbar-inverse
-        .container-fluid
-          .navbar-header
-            a.navbar-brand(href='/') FundKoala
+    nav.navbar.navbar-default
+      .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') FundKoala
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
-              a(href='/') Home
             li
-              a(href='/funds/new') New Fund
+              a(href='#')
+                | Link 
+                span.sr-only (current)
             li
-              a(href='/') Dashboard
-          ul.nav.navbar-nav.navbar-right
-            li
-              a(href="/about")
-                span.glyphicon.glyphicon-user
-                |  Profile
-            li
-              a(href="/signin")
-                span.glyphicon.glyphicon-log-in
-                |  Login
-            li
-              a(href="/signout")
-                span.glyphicon.glyphicon-log-in
-                |  Logout
+              a(href='#') Link
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                | Dropdown 
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='#') Action
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+                li.divider(role='separator')
+                li
+                  a(href='#') Separated link
+                li.divider(role='separator')
+                li
+                  a(href='#') One more separated link
+        // /.navbar-collapse
+      // /.container-fluid
+
     div.temp-pad
       yield
