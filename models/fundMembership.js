@@ -1,3 +1,5 @@
+'use strict'
+
 var orm = require('orm')
 
 module.exports = function(db, models){

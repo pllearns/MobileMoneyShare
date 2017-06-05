@@ -3,7 +3,7 @@
 }
 .temp-pad {
   padding-right: 75px;
-  padding-left: 75px; 
+  padding-left: 75px;
 }
 
 .bkimg {
@@ -41,6 +41,7 @@ small.text-muted {
 .Header {
   text-align: center;
   color: white;
+  font-family: sans-serif;
 }
 
 .AboutKoala {
